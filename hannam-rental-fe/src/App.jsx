@@ -44,8 +44,8 @@ function reducer(state, action){
   }
 }
 
-const RentalStateContext = createContext();
-const RentalDispatchContext = createContext();
+export const RentalStateContext = createContext();
+export const RentalDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
