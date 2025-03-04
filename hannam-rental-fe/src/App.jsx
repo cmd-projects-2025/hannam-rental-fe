@@ -45,7 +45,7 @@ function reducer(state, action){
 }
 
 const RentalStateContext = createContext();
-
+const RentalDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
@@ -75,16 +75,23 @@ function App() {
   return (
     <div className='App'>
       <RentalStateContext.Provider value = {data}>
-        <Routes>
-          <Route path = '/' element = {<Main/>} />
-          <Route path = '/login' element = {<Login/>} />
-          <Route path='/signup' element = {<SignUp/>} />
-          <Route path = '/mypage' element = {<Mypage/>} />
-          <Route path = '/rental/:id' element = {<RentalPage/>} />
-          <Route path = '/college' element = {<CollegeSelect/>} />
-          <Route path = '/sidebar' element = {<Sidebar/>} />
-          <Route path = '/application' element = {<RentalApplication/>} />
-        </Routes>
+        <RentalDispatchContext.Provider
+          value={{
+            onRental,
+            onReturn,
+          }}
+        >
+          <Routes>
+            <Route path = '/' element = {<Main/>} />
+            <Route path = '/login' element = {<Login/>} />
+            <Route path='/signup' element = {<SignUp/>} />
+            <Route path = '/mypage' element = {<Mypage/>} />
+            <Route path = '/rental/:id' element = {<RentalPage/>} />
+            <Route path = '/college' element = {<CollegeSelect/>} />
+            <Route path = '/sidebar' element = {<Sidebar/>} />
+            <Route path = '/application' element = {<RentalApplication/>} />
+          </Routes>
+        </RentalDispatchContext.Provider>
       </RentalStateContext.Provider>
     </div>
   )
