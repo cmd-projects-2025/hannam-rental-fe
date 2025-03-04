@@ -3,8 +3,11 @@ import Header from "./Header"
 import user from "../assets/user.jpg"
 import umbrella from "../assets/umbrella.jpg"
 import {RentalDates} from "../utill/date"
+import { useContext } from 'react'
+import { RentalStateContext } from "../App"
 
 const Mypage  = () => {
+    const data = useContext(RentalStateContext);
     const { rentalDate, returnDate } = RentalDates();
     
     return(
