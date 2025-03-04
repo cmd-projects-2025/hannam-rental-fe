@@ -20,7 +20,10 @@ const Header = () => {
                 text = {"LogIn"}
                 className = {"headerLogIn"}/>
 
-                <div className='menu'>메뉴</div>
+                <Button
+                onClick={() => nav(`/mypage`)}
+                text = {"메뉴"}
+                className = {"menu"}/>
             </div>
         </header>
     )
