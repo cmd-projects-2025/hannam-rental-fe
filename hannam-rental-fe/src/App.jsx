@@ -8,7 +8,7 @@ import RentalPage from './component/RentalPage'
 import CollegeSelect from './component/CollegeSelect'
 import Sidebar from './component/Sidebar'
 import RentalApplication from './component/RentalApplication'
-import { useReducer, useRef } from 'react'
+import { useReducer, useRef, createContext } from 'react'
 import Button from './component/Button'
 
 const mockData = [
@@ -44,6 +44,9 @@ function reducer(state, action){
   }
 }
 
+const RentalStateContext = createContext();
+
+
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(4)
@@ -71,16 +74,18 @@ function App() {
 
   return (
     <div className='App'>
-      <Routes>
-        <Route path = '/' element = {<Main/>} />
-        <Route path = '/login' element = {<Login/>} />
-        <Route path='/signup' element = {<SignUp/>} />
-        <Route path = '/mypage' element = {<Mypage/>} />
-        <Route path = '/rental/:id' element = {<RentalPage/>} />
-        <Route path = '/college' element = {<CollegeSelect/>} />
-        <Route path = '/sidebar' element = {<Sidebar/>} />
-        <Route path = '/application' element = {<RentalApplication/>} />
-      </Routes>
+      <RentalStateContext.Provider value = {data}>
+        <Routes>
+          <Route path = '/' element = {<Main/>} />
+          <Route path = '/login' element = {<Login/>} />
+          <Route path='/signup' element = {<SignUp/>} />
+          <Route path = '/mypage' element = {<Mypage/>} />
+          <Route path = '/rental/:id' element = {<RentalPage/>} />
+          <Route path = '/college' element = {<CollegeSelect/>} />
+          <Route path = '/sidebar' element = {<Sidebar/>} />
+          <Route path = '/application' element = {<RentalApplication/>} />
+        </Routes>
+      </RentalStateContext.Provider>
     </div>
   )
 }
